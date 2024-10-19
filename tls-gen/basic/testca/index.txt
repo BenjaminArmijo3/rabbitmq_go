@@ -1,0 +1,2 @@
+V	341017182729Z		01	unknown	/CN=Benjamins-MacBook-Pro.local/O=server
+V	341017182729Z		02	unknown	/CN=Benjamins-MacBook-Pro.local/O=client

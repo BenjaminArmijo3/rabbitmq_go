@@ -1,0 +1,67 @@
+{
+  "users": [
+    {
+      "name": "benja",
+      "password_hash": "iP4H9af5I3momUUN/rFKy5bHgsWRwQbtPDkOAGKFk9vOlUOJ",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    },
+    {
+      "name": "customers"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "benja",
+      "vhost": "customers",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "customer_events",
+      "vhost": "customers",
+      "type": "fanout",
+      "durable": true,
+      "autodelete": false,
+      "internal": "false",
+      "arguments": {}
+    },
+    {
+      "name": "customer_callbacks",
+      "vhost": "customers",
+      "type": "direct",
+      "durable": true,
+      "autodelete": false,
+      "internal": "false",
+      "arguments": {}
+    }
+  ],
+
+  "queues": [
+    {
+      "name": "customers_created",
+      "vhosts": "customers",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+
+  "bindings": [
+    {
+      "source": "cusotmers_events",
+      "vhost": "customers",
+      "destination": "customer_created",
+      "destination_type": "queue",
+      "routing_key": "customers.created.*",
+      "arguments": {}
+    }
+  ]
+}
